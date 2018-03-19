@@ -3,3 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  form
+    |Name
+    input(type='text', name='name')
+    |Url
+    input(type='text', name='url')
+    |Alexa
+    input(type='text', name='alexa')
+    |Country
+    input(type='text', name='country')
