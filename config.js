@@ -31,7 +31,7 @@ var config = {
     redis_password: '',
 
     // 程序运行的端口
-    port: 3001,
+    port: 3000,
 
     // 话题列表显示的话题数量
     list_topic_count: 20,
@@ -53,9 +53,5 @@ var config = {
     // 是否允许直接注册（否则只能走 github 的方式）
     allow_sign_up: true,
 };
-
-if (process.env.NODE_ENV === 'test') {
-    config.db = 'mongodb://127.0.0.1/node_club_test';
-}
 
 module.exports = config;
