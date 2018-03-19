@@ -1,5 +1,5 @@
 {
-  "name": "untitled",
+  "name": "nodejs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,23 @@
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "mysql": "^2.15.0",
+    "node": "^9.8.0",
+    "pug": "^2.0.1",
+    "require": "^2.4.20",
     "serve-favicon": "~2.4.5"
-  }
+  },
+  "description": "testing code",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobijy/nodejslearning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacobijy/nodejslearning/issues"
+  },
+  "homepage": "https://github.com/jacobijy/nodejslearning#readme"
 }
