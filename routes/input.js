@@ -23,7 +23,7 @@ var checkAvailable = function(params) {
   return true;
 }
 
-var checkExist = function(params) {
+var addWebsiteInfo = function(params) {
   if (!checkAvailable(params)) {
     console.log('checkavailable false');
     return false;
@@ -42,12 +42,12 @@ var checkExist = function(params) {
     else {
       console.log('new input');
       query_result = true;
-      addwebsite(params);
+      addWebsiteAttribute(params);
     }
   })
 }
 
-var addwebsite = function(params) {
+var addWebsiteAttribute = function(params) {
   var addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)';
   var sqlParams = [params.name, params.url, params.alexa, params.country];
   connection.query(addSql, sqlParams, function (err, result) {
@@ -69,7 +69,7 @@ router.post('/', function(req, res, next) {
     alexa: req.body.alexa, 
     country: req.body.country
   };
-  checkExist(params);
+  addWebsiteInfo(params);
 })
 
 module.exports = router;
