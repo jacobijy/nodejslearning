@@ -38,22 +38,16 @@ var checkExist = function(params) {
     
     if (result.length > 0) {
       console.log('already exists');
-      return false;
     }
     else {
       console.log('new input');
-      return true;
+      query_result = true;
+      addwebsite(params);
     }
-  });
+  })
 }
 
-var inputwebsite = function(params) {
-  var check_status = checkExist(params);
-  console.log(check_status);
-  if (!check_status) {
-    console.log('lack of information or already exists');
-    return;
-  }
+var addwebsite = function(params) {
   var addSql = 'INSERT INTO websites(Id,name,url,alexa,country) VALUES(0,?,?,?,?)';
   var sqlParams = [params.name, params.url, params.alexa, params.country];
   connection.query(addSql, sqlParams, function (err, result) {
@@ -75,7 +69,7 @@ router.post('/', function(req, res, next) {
     alexa: req.body.alexa, 
     country: req.body.country
   };
-  inputwebsite(params);
+  checkExist(params);
 })
 
 module.exports = router;
