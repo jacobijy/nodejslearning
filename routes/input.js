@@ -52,19 +52,30 @@ var checkExist = function(params) {
     console.log('checkavailable false');
     return false;
   }
-  var sql = 'SELECT name, url FROM websites WHERE name = ? OR url = ?';
-  var queryParams = [params.name, params.url];
-  connection.query(sql, queryParams, function (err, result) {
+  var websites_list;
+  var sql = 'SELECT * FROM websites';
+  connection.query(sql, function (err, result) {
     if(err) {
-      console.log('[SELECT ERROR] - ', err.message);
+      console.log('[SELECT ERROR] - ',err.message);
       return;
     }
-         
-    if (result.length > 0) {
-      console.log('already exists');
+    
+    // console.log(result);       
+    console.log('--------------------------SELECT----------------------------');
+    console.log(result);
+    console.log('------------------------------------------------------------\n\n');
+
+    for (var key1 in result) {
+      const RowDataPacket  = result[key1];
+      console.log(RowDataPacket);
+      var is_exist = RowDataPacket['name'] == params.name || RowDataPacket['url'] == params.url;
+      if (is_exist) {
+        return false;
+      }
     }
-    return result.length==0;
   });
+  
+  return true;
 }
 
 module.exports = router;
