@@ -6,6 +6,7 @@ var config = require('../config');
 var connection = mysql.createConnection(config.mysqldb);
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  connection.connect();
   var query = 'SELECT * FROM websites';
   connection.query(query, function(err, result) {
     if(err) {
@@ -17,6 +18,7 @@ router.get('/', function(req, res, next) {
       result: result
     });
   });
+  connection.end();
 });
 
 module.exports = router;

@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Wow: #{result}
+  p Wow: #{result[0].id}
   form(action='/input', method='post')
     |Name
     input(type='text', name='name')
@@ -14,8 +14,16 @@ block content
     |Country
     input(type='text', name='country')
     input(type='submit', value='submit')
-  table(border='1', width = '400')
-    - for(var i=0; i<6; i++)
+  table(border='1', width='400')
+    th ID
+    th 名称
+    th 地址
+    th 排名
+    th 国家
+    - for(var i=0; i<result.length; i++)
         tr
-          - for(var j=0; j<6; j++)
-            td script(src="")
+          td #{result[i].id}
+          td #{result[i].name}
+          td #{result[i].url}
+          td #{result[i].alexa}
+          td #{result[i].country}

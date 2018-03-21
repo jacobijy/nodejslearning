@@ -3,8 +3,11 @@ var router = express.Router();
 var mysql = require('mysql');
 var config = require('../config');
 var check = require('../utils/check');
+var EventProxy = require('eventproxy');
 
+var ep = EventProxy();
 var connection = mysql.createConnection(config.mysqldb);
+connection.connect();
 
 var checkAvailable = function(params) {
   console.log('checkavailable');
@@ -54,7 +57,7 @@ var addWebsiteAttribute = function(params) {
     if (err) {
       console.log('[INSERT ERROR] - ', err.message);
     }        
-
+    ep.emit('insert_end', result);
     console.log('--------------------------INSERT----------------------------');
     //console.log('INSERT ID:',result.insertId);        
     console.log('INSERT ID:',result);        
@@ -70,6 +73,10 @@ router.post('/', function(req, res, next) {
     country: req.body.country
   };
   addWebsiteInfo(params);
+  ep.after('insert_end', 1, function() {
+    res.redirect('../');
+    connection.end();
+  })
 })
 
 module.exports = router;
