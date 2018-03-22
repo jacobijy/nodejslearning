@@ -31,7 +31,7 @@ var config = {
     redis_password: '',
 
     // 程序运行的端口
-    port: 3000,
+    port: process.env.port || '3000',
 
     // 话题列表显示的话题数量
     list_topic_count: 20,

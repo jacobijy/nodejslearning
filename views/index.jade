@@ -4,34 +4,43 @@ block content
   h1= title
   p Welcome to #{title}
   p Wow: #{result[0].id}
-  form(action='/input', method='post')
-    |Name
-    input(type='text', name='name')
-    |Url
-    input(type='text', name='url')
-    |Alexa
-    input(type='text', name='alexa')
-    |Country
-    input(type='text', name='country')
-    input(type='submit', value='submit')
-    br
-    a(href="/chat") chat
-  table(border='0', width='400')
-    th ID
-    th 名称
-    th 地址
-    th 排名
-    th 国家
-    - for(var i=0; i<result.length; i++)
-        tr
-          td 
-            input(value=result[i].id)
-          td #{result[i].name}
-          td #{result[i].url}
-          td #{result[i].alexa}
-          td #{result[i].country}
-          td 
-            button(type='button', onclick=("alert('check')")) 修改
+  table(border='1')
+    tr 用户名 
+    tr 
+      input(type="text")
+    tr 密码
+    tr 
+      input(type="password")
+    tr 
+      input#login(type="submit", value='login')
+  //- form(action='/input', method='post')
+  //-   |Name
+  //-   input(type='text', name='name')
+  //-   |Url
+  //-   input(type='text', name='url')
+  //-   |Alexa
+  //-   input(type='text', name='alexa')
+  //-   |Country
+  //-   input(type='text', name='country')
+  //-   input(type='submit', value='submit')
+  //-   br
+  //-   a(href="/chat") chat
+  //- table(border='0', width='400')
+  //-   th ID
+  //-   th 名称
+  //-   th 地址
+  //-   th 排名
+  //-   th 国家
+  //-   - for(var i=0; i<result.length; i++)
+  //-       tr
+  //-         td 
+  //-           input(value=result[i].id)
+  //-         td #{result[i].name}
+  //-         td #{result[i].url}
+  //-         td #{result[i].alexa}
+  //-         td #{result[i].country}
+  //-         td 
+  //-           button(type='button', onclick=("alert('check')")) 修改
   //- audio(controls='', height='100', width='100')
   //-   source(src='/audio/test.mp3', type='audio/mpeg')
   //-   source(src='/audio/horse.ogg', type='audio/ogg')
