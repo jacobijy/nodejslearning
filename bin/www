@@ -7,12 +7,14 @@
 var app = require('../app');
 var debug = require('debug')('untitled:server');
 var http = require('http');
+var config = require('../config');
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3000');
+console.log(process.env.PORT);
 app.set('port', port);
 
 /**
@@ -25,13 +27,14 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, config.host ,function() {
+  console.log(`服务器运行在http://${config.host}:${port}`);}
+);
 server.on('error', onError);
 server.on('listening', onListening);
-var io = require('socket.io').listen(server.listen(port))
+var io = require('socket.io').listen(server.listen(port, config.host))
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('message', { message: 'welcome to the chat' });
   socket.on('send', function (data) {
     debug(data);
     io.sockets.emit('message', data);
@@ -92,6 +95,7 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
+  console.log(addr);
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
