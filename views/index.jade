@@ -14,7 +14,7 @@ block content
     |Country
     input(type='text', name='country')
     input(type='submit', value='submit')
-  table(border='1', width='400')
+  table(border='0', width='400')
     th ID
     th 名称
     th 地址
@@ -22,8 +22,11 @@ block content
     th 国家
     - for(var i=0; i<result.length; i++)
         tr
-          td #{result[i].id}
+          td 
+            input(value=result[i].id)
           td #{result[i].name}
           td #{result[i].url}
           td #{result[i].alexa}
           td #{result[i].country}
+          td 
+            button(type='button', onclick=("alert('check')")) 修改

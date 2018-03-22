@@ -10,7 +10,6 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "event-proxy": "0.0.1",
     "eventproxy": "^1.0.0",
     "express": "~4.15.5",
     "jade": "~1.11.0",
