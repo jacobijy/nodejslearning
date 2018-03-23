@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  form(action="/users/signup", method='post')
+    table(border='0')
+      tr
+        td 用户名
+        td 
+          input(type="text", name='username')
+      tr
+        td 密码
+        td 
+          input(type="password", name='password')
+      tr
+        td 再次输入
+        td 
+          input(type="password", name='passwordex')
+      tr 
+        td 邮箱
+        td 
+          input(type="email", name='email')
+      tr
+        th(colspan='2')
+          input#signup(type="submit", value='signup')

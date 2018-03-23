@@ -3,16 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Wow: #{result[0].id}
-  table(border='1')
-    tr 用户名 
-    tr 
-      input(type="text")
-    tr 密码
-    tr 
-      input(type="password")
-    tr 
-      input#login(type="submit", value='login')
+  //- p Wow: #{result[0].id}
+        
+  form(action="/users/login", method='post')
+    table(border='0')
+      tr
+        td 用户名
+        td 
+          input(type="text")
+      tr
+        td 密码
+        td 
+          input(type="password")
+      tr
+        th(colspan='2')
+          input#login(type="submit", value='login')
+          a(href="/users/signup") 注册
   //- form(action='/input', method='post')
   //-   |Name
   //-   input(type='text', name='name')
