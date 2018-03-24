@@ -10,6 +10,7 @@ CREATE TABLE `users`(
   `lastlogin` datetime NOT NULL COMMENT '上次登陆时间',
   `password` varchar(255) NOT NULL,
   `authority` ENUM('admin', 'manager','normal') NOT NULL DEFAULT 'normal',
+  `login_ip` varchar(255) NOT NULL COMMENT '登陆IP',
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
