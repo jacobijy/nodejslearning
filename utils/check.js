@@ -1,3 +1,6 @@
+var moment = require('moment');
+moment.locale('zh-cn'); // 使用中文
+
 exports.checkURL = function(URL) {
   var str=URL;
   //判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
@@ -24,4 +27,30 @@ exports.getIPAdress = function(){
              }  
         }  
   }  
-} 
+}
+
+exports.formateDateForMysql = function(date, friendly) {
+  date = new Date();
+  var YYYYMMDD = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+  var HHmmss = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+  if (friendly) {
+    return YYYYMMDD;
+  }
+  else {
+    return YYYYMMDD+' '+HHmmss;
+  }
+}
+
+exports.formatDate = function(date, friendly) {
+  date = moment(date);
+
+  if (friendly) {
+    return date.fromNow();
+  } else {
+    return date.format('YYYY-MM-DD HH:mm:ss');
+  }
+}
+
+exports.validateId = function (str) {
+  return (/^[a-zA-Z0-9\-_]+$/i).test(str);
+};
