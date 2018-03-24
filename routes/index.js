@@ -7,7 +7,7 @@ var connection = mysql.createConnection(config.mysqldb);
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // connection.connect();
-  // var query = 'SELECT * FROM websites';
+  // var query = 'SELECT * FROM users';
   // connection.query(query, function(err, result) {
   //   if(err) {
   //     console.log('[SELECT ERROR] - ', err.message);
