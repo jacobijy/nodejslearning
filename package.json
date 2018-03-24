@@ -22,6 +22,7 @@
     "require": "^2.4.20",
     "serve-favicon": "~2.4.5",
     "socket.io": "^2.0.4",
+    "moment": "^2.21.0",
     "validator": "^9.4.1"
   },
   "description": "testing code",

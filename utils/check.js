@@ -31,7 +31,7 @@ exports.getIPAdress = function(){
 
 exports.formateDateForMysql = function(date, friendly) {
   date = new Date();
-  var YYYYMMDD = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+  var YYYYMMDD = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
   var HHmmss = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
   if (friendly) {
     return YYYYMMDD;
