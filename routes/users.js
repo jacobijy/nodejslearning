@@ -48,8 +48,8 @@ router.post('/signup', function(req, res, next) {
     return ep.emit('prop_err', '两次密码输入不一致。');
   }
   pool.getConnection(function(err, connection) {
-    var updateQuery ='INSERT INTO users(username, useremail, signdate, lastlogin, password) VALUES(?,?,?,?,?)';
-    var updateParams = [username, email, check.formateDateForMysql(date, true), check.formateDateForMysql(date, false), password];
+    var updateQuery ='INSERT INTO users(username, useremail, signdate, lastlogin, password, login_ip) VALUES(?,?,?,?,?,?)';
+    var updateParams = [username, email, check.formateDateForMysql(date, true), check.formateDateForMysql(date, false), password, check.getIPAdress()];
     connection.query(updateQuery, updateParams, function(err, result) {
       if (err) {
         console.log('[UPDATE ERROR] - ', err.message);
