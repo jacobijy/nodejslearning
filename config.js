@@ -14,7 +14,7 @@ var config = {
 
     site_static_host: '', // 静态文件存储域名
     // 社区的域名
-    host: 'localhost',
+    host: '10.0.0.10',
 
     // mysql 配置
     mysqldb : {

@@ -1,5 +1,6 @@
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
+USE `nodejs`
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`(
   `userid` int(11) NOT NULL AUTO_INCREMENT,
