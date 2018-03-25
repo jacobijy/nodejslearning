@@ -32,10 +32,16 @@ server.on('listening', onListening);
 var io = require('socket.io').listen(server.listen(config.port, config.host))
 
 io.sockets.on('connection', function (socket) {
+  console.log(socket);
+  console.log('User connected');
   socket.on('send', function (data) {
     console.log(data);
     io.sockets.emit('message', data);
   });
+
+  socket.on('disconnect' function() {
+    console.log('User disconnected');
+  })
 });
 
 /**
