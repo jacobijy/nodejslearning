@@ -14,7 +14,7 @@ var config = {
 
     site_static_host: '', // 静态文件存储域名
     // 社区的域名
-    host: '10.0.0.10',
+    host: '172.26.164.243',
 
     // mysql 配置
     mysqldb : {
@@ -53,5 +53,6 @@ var config = {
     // 是否允许直接注册（否则只能走 github 的方式）
     allow_sign_up: true,
 };
+
 
 module.exports = config;

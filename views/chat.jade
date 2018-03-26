@@ -1,8 +1,15 @@
 extends layout
 
 block content
+  script.
+    function disconnect() {
+      var socket = io.connect('http://localhost:3000');
+      return "doing";
+    }
+  elements(onbeforeunload='return disconnect()')
   #content(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;')
   script(src='/javascripts/chat.js')
+  script(src='/javascripts/onclose.js')
   script(src='/socket.io/socket.io.js')
   .controls
     | Name: 
