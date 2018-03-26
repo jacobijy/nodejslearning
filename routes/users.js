@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
+  console.log("signup!!!")
   res.render('signup');
 });
 
@@ -67,26 +68,37 @@ var checkUserAuthorized = function(username, password) {
     var date = new Date();
 
     var updateParams = [check.formatDate(date, false), check.getIPAdress(), username, password];
-    console.log(updateParams);
     connection.query(updateQuery, updateParams, function(err, result) {
-    if (err) {
-      console.log('[UPDATE ERROR] - ', err.message);
-      return;
-    }
-    console.log(result);
-    ep.emit('user_check_end', result);
+      if (err) {
+        console.log('[UPDATE ERROR] - ', err.message);
+        return;
+      }
+      console.log(result);
+      ep.emit('user_check_end', result);
     })
-    connection.release();
   })
 }
 
 router.post('/login', function(req, res, next) {
-  console.log(req.body);
   checkUserAuthorized(req.body.username, req.body.password);
   ep.after('user_check_end', 1, function(result) {
-    // console.log('debug', res.location);
-    console.log(result);
-    res.redirect('../chat');
+    var queryParams = [req.body.username, req.body.password];
+    var query = 'SELECT userid, username FROM users WHERE username=? AND password=?';
+    pool.getConnection(function(err, connection) {
+      connection.query(query, queryParams, function(err, result) {
+        if(err) {
+          console.log('[SELECT ERROR] - ', err.message);
+          return;
+        }
+        console.log(req.body.name);
+        res.render('chat', {
+          name:result[0].username,
+          userid:result[0].userid
+        })
+        res.locals ='../chat';
+      })
+      connection.release();
+    })
   }) 
 });
 

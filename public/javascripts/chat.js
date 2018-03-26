@@ -1,16 +1,17 @@
 window.onload = function() {
 
+//   var obj = JSON.parse("config.json");
+//   console.log(obj);  
   var messages = [];
-  var socket = io.connect('http://172.26.163.48:3000');
+  var socket = io.connect('http://10.0.0.14:3000');
   var field = document.getElementById("field");
   var sendButton = document.getElementById("send");
   var content = document.getElementById("content");
-  var name = this.document.getElementById('name');
+//   var name = this.document.getElementById('name');
 
   socket.on('message', function (data) {
       if(data.message) {
           messages.push(data);
-          console.log(data);
           var html = '';
           for(var i=0; i<messages.length; i++) {
               html += ('<b>' + messages[i].username ? messages[i].username :'Server');
@@ -25,13 +26,13 @@ window.onload = function() {
   });
 
   sendButton.onclick = function() {
-      if (name.value == '') {
-          alert('Enter Your Name');
-      }
-      else {
+    //   if (name == '') {
+    //       alert('Select A Friend');
+    //   }
+    //   else {
         var text = field.value;
-        socket.emit('send', { message: text, username : name.value});
+        socket.emit('send', { message: text, username : name, userid : userid});
         field.value = "";
-      }
+    //   }
   };
 }
