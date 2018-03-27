@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,6 +9,7 @@ var config = require('./config');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var input = require('./routes/input');
+var chat = require('./routes/chat');
 // var chat = require('./public/javascripts/chat');
 
 var app = express();
@@ -22,15 +24,18 @@ console.log(__dirname);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(config.session_secret));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: config.session_secret,
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/input', input);
-app.use('/chat', function(req, res, next) {
-  res.render('chat');
-});
+app.use('/chat', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

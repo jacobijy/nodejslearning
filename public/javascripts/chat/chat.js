@@ -4,6 +4,7 @@ window.onload = function () {
   //   console.log(obj);
   var data;
   var socket;
+  // this.postMessage();
   $.getJSON("/json/config.json", data,
     function (data, textStatus, jqXHR) {
       socket = io.connect('http://' + data.config.host + ':' + data.config.port);

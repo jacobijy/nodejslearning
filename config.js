@@ -53,6 +53,9 @@ var config = {
     admins: { user_login_name: true },
     // 是否允许直接注册（否则只能走 github 的方式）
     allow_sign_up: true,
+
+    session_secret: 'node_chat_secret',
+    auth_cookiename: 'node_chat',
 };
 
 

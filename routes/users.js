@@ -90,13 +90,20 @@ router.post('/login', function(req, res, next) {
           console.log('[SELECT ERROR] - ', err.message);
           return;
         }
-        console.log(req.body);
-        console.log(result[0]);
-        res.render('chat', {
-          name:result[0].username,
-          userid:result[0].userid
-        })
-        res.locals ='../chat';
+        // res.render('chat', {
+        //   name:result[0].username,
+        //   userid:result[0].userid
+        // })
+        var auth_token = result[0].userid + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
+        var opts = {
+          path: '/chat',
+          maxAge: 1000 * 60 * 60 * 24 * 30,
+          signed: true,
+          httpOnly: true
+        };
+        res.cookie(config.auth_cookiename, auth_token, opts);
+        res.redirect('../chat');
+        
       })
       connection.release();
     })
