@@ -20,6 +20,13 @@ router.use('/', function(req, res, next) {
         return;
       }
       console.log(result);
+      var username='';
+      result.forEach(element => {
+        if (element.userid==user_id) {
+          username=element.username;
+          return;
+        }
+      });
       res.render('chat', {userid: user_id, user_list:result});
     })
     connection.release();
