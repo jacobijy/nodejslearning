@@ -90,7 +90,8 @@ router.post('/login', function(req, res, next) {
           console.log('[SELECT ERROR] - ', err.message);
           return;
         }
-        console.log(req.body.name);
+        console.log(req.body);
+        console.log(result[0]);
         res.render('chat', {
           name:result[0].username,
           userid:result[0].userid

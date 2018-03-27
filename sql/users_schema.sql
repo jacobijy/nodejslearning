@@ -15,7 +15,7 @@ CREATE TABLE `users`(
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 BEGIN;
-INSERT INTO `users` VALUES('0', 'admin', 'astony.jy@outlook.com', '2018-03-24', '2018-03-24 15:53:20', 'admin', 'admin', 'localhost');
+INSERT INTO `users` VALUES('1', 'admin', 'astony.jy@outlook.com', '2018-03-24', '2018-03-24 15:53:20', 'admin', 'admin', 'localhost');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

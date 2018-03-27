@@ -8,9 +8,13 @@ block content
     }
   elements(onbeforeunload='return disconnect()')
   #content(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;')
+  script.
+    window.userid=!{JSON.stringify(userid)};
+    window.name=!{JSON.stringify(name)};
+  script(src='/socket.io/socket.io.js')
+  script(src='/jquery/jquery-3.3.1.min.js')
   script(src='/javascripts/chat.js')
   script(src='/javascripts/onclose.js')
-  script(src='/socket.io/socket.io.js')
   .controls
     p Name:#{name}
     br
