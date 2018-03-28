@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('nodejslearning:server');
 var http = require('http');
 var config = require('../config');
+var encrypt = require('../models/encrypt');
 
 /**
  * Get port from environment and store in Express.
@@ -35,6 +36,9 @@ var io = require('socket.io').listen(server.listen(config.port, config.host))
 io.sockets.on('connection', function (socket) {
   console.log('User connected');
   socket.on('send', function (data) {
+    var message_encoded = encrypt.aesEncrypt(data.message);
+    console.log(data);
+    data.message = message_encoded;
     console.log(data);
     io.sockets.emit('message', data);
   });
