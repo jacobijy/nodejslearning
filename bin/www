@@ -37,10 +37,10 @@ io.sockets.on('connection', function (socket) {
   console.log('User connected');
   socket.on('send', function (data) {
     var message_encoded = encrypt.aesEncrypt(data.message);
-    console.log(data);
     data.message = message_encoded;
-    console.log(data);
-    io.sockets.emit('message', data);
+    if (io.sockets.connected[socket.id]) {
+      io.sockets.connected[socket.id].emit('message', data);
+    }
   });
 
   socket.on('disconnect', function(data) {
