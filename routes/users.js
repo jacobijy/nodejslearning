@@ -80,6 +80,8 @@ var checkUserAuthorized = function(username, password) {
 }
 
 router.post('/login', function(req, res, next) {
+  console.log('get request');
+  console.log(req.body);
   checkUserAuthorized(req.body.username, req.body.password);
   ep.after('user_check_end', 1, function(result) {
     var queryParams = [req.body.username, req.body.password];
@@ -94,16 +96,17 @@ router.post('/login', function(req, res, next) {
         //   name:result[0].username,
         //   userid:result[0].userid
         // })
-        var auth_token = result[0].userid + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
-        var opts = {
-          path: '/chat',
-          maxAge: 1000 * 60 * 60 * 24 * 30,
-          signed: true,
-          httpOnly: true
-        };
-        res.cookie(config.auth_cookiename, auth_token, opts);
-        res.redirect('../chat');
-        
+        if (result.length > 0) {
+          var auth_token = result[0].userid + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
+          var opts = {
+            path: '/chat',
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+            signed: true,
+            httpOnly: true
+          };
+          res.cookie(config.auth_cookiename, auth_token, opts);
+          res.redirect('../chat');
+        }
       })
       connection.release();
     })
