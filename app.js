@@ -10,6 +10,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var input = require('./routes/input');
 var chat = require('./routes/chat');
+var Loader = require('loader');
+var LoaderConnect = require('loader-connect');
+var _ = require('lodash');
 
 var app = express();
 
@@ -38,11 +41,16 @@ app.use('/users', users);
 app.use('/input', input);
 app.use('/chat', chat);
 
+// set static, dynamic helpers
+_.extend(app.locals, {
+  config: config,
+  Loader: Loader
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
-  console.log(err);
   next(err);
 });
 
