@@ -12,6 +12,7 @@ router.use('/', function(req, res, next) {
   }
   var auth = auth_token.split('$$$$');
   var user_id = auth[0];
+  var username = auth[1];
   pool.getConnection(function (err, connection) {  
     var query = 'SELECT username, userid FROM nodejs.users';
     connection.query(query, function (err, result) {
@@ -20,7 +21,8 @@ router.use('/', function(req, res, next) {
         return;
       }
       console.log(result);
-      res.render('chat', {userid: user_id, user_list:result});
+      console.log(user_id, ' ', username);
+      res.render('chat', {userid:user_id, username:username, user_list:result});
     })
     connection.release();
   })

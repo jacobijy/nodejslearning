@@ -6,6 +6,12 @@ block content
       var userinfo = !{JSON.stringify(user_list)};
       return userinfo[i].userid;
     }
+  script.
+    window.userid=!{JSON.stringify(userid)};
+  script(src='/socket.io/socket.io.js')
+  script(src='/jquery/jquery-3.3.1.min.js')
+  script(src='/javascripts/chat/chat.js')
+  script(src='/javascripts/chat/onclose.js')
   #chatboard(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;float:left')
   #friendslist(style='width: 65px; height:300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll')
     table(border='0', width='400')
@@ -13,13 +19,7 @@ block content
       -if (user_list[i].userid!=userid)
         tr
           td 
-            button(type='button', onclick=("getUserid(i)"), name=i) #{user_list[i].username}
-  script.
-    window.userid=!{JSON.stringify(userid)};
-  script(src='/socket.io/socket.io.js')
-  script(src='/jquery/jquery-3.3.1.min.js')
-  script(src='/javascripts/chat/chat.js')
-  script(src='/javascripts/chat/onclose.js')
+            button(type='button', onclick=("getUserid(this.name)"), name=i) #{user_list[i].username}
   .controls
     p Name:#{name}
     br

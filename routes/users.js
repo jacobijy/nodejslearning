@@ -97,7 +97,7 @@ router.post('/login', function(req, res, next) {
         //   userid:result[0].userid
         // })
         if (result.length > 0) {
-          var auth_token = result[0].userid + '$$$$'; // 以后可能会存储更多信息，用 $$$$ 来分隔
+          var auth_token = result[0].userid + '$$$$' + result[0].username; // 以后可能会存储更多信息，用 $$$$ 来分隔
           var opts = {
             path: '/chat',
             maxAge: 1000 * 60 * 60 * 24 * 30,
