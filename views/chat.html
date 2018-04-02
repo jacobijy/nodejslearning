@@ -1,14 +1,13 @@
 <script>
     function getUserid(i) {
-      var userinfo = user_list[i];
-      window.friendid = userinfo.userid;
+      window.friendid = JSON.stringify(i);
     }
 </script>
-<script>window.userid=JSON.stringify(userid)</script>
+<script>window.userid=JSON.stringify("<%= userid %>")</script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/jquery/jquery-3.3.1.min.js"></script>
-<script src="/javascripts/chat/chat.js"></script>
-<script src="/javascripts/chat/onclose.js"></script>
+<script src="/javascripts/client/chat.js"></script>
+<script src="/javascripts/client/onclose.js"></script>
 <div id="chatboard" style="width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;float:left"></div>
 <div id="friendslist" style="width: 65px; height:300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll">
 <table border="0" width="400">
@@ -18,8 +17,8 @@
     <% 
     if (user_list[i].userid != userid) { 
     %>
-      <tr><td><button type="button" onclick="getUserid(this.name)" name=i><%=user_list[i].username%></button></td></tr>
-    <% }%>
+      <tr><td><button type="button" onclick="getUserid('<%= user_list[i].userid %>')"><%=user_list[i].username%></button></td></tr>
+    <% } %>
   <% } %>
 </table>
 </div>
