@@ -3,15 +3,16 @@ window.onload = function () {
   //   var obj = JSON.parse("config.json");
   //   console.log(obj);
   var data;
-  var socket;
   // this.postMessage();
   $.getJSON("/json/config.json", data,
     function (data, textStatus, jqXHR) {
-      socket = io.connect('http://' + data.config.host + ':' + data.config.port);
+      var socket = io.connect('http://' + data.config.host + ':' + data.config.port);
+      // console.log('socketid:',socket.id);
+      console.log(socket);
       var messages = [];
       var field = document.getElementById("field");
       var sendButton = document.getElementById("send");
-      var content = document.getElementById("content");
+      var chatboard = document.getElementById("chatboard");
       //   var name = this.document.getElementById('name');
 
       socket.on('message', function (data) {
@@ -23,8 +24,8 @@ window.onload = function () {
             html += ':' + messages[i].message + '<br />';
           }
           console.log(html);
-          content.innerHTML = html;
-          content.scrollTop = content.scrollHeight;
+          chatboard.innerHTML = html;
+          chatboard.scrollTop = chatboard.scrollHeight;
         } else {
           console.log("There is a problem:", data);
         }
@@ -36,7 +37,8 @@ window.onload = function () {
         //   }
         //   else {
         var text = field.value;
-        socket.emit('send', { message: text, username: name, userid: userid });
+        console.log(data);
+        socket.emit('send', { message: text, reciever: friendid, sender: userid });
         field.value = "";
       };
     }

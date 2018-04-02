@@ -21,7 +21,6 @@ router.use('/', function(req, res, next) {
         return;
       }
       console.log(result);
-      console.log(user_id, ' ', username);
       res.render('chat', {userid:user_id, username:username, user_list:result});
     })
     connection.release();
