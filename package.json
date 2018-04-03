@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "testmqtt": "node ./models/mqttclient.js"
+    "testmqtt": "node ./test/mqttclient.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.43",
