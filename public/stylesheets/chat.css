@@ -7,10 +7,19 @@
   float:left;
 }
 
-#friendlist {
-  width: 65px;
+#friendslist {
+  width: 85px;
   height:300px; 
   margin: 0 0 20px 0; 
   border: solid 1px #999;
-  overflow-y: scroll  
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#friendstable {
+  margin: auto;
+}
+
+button.friendsbutton {
+  margin: auto;
 }

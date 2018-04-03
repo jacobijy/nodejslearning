@@ -14,8 +14,8 @@ var config = {
 
     site_static_host: '', // 静态文件存储域名
     // 社区的域名
-    host: '192.168.137.19',
-    // host: '172.26.164.243',
+    // host: '192.168.137.19',
+    host: '172.26.164.243',
     // host: 'localhost',
 
     // mysql 配置

@@ -24,6 +24,7 @@
     "lodash": "^4.17.5",
     "moment": "^2.22.0",
     "morgan": "~1.9.0",
+    "mqtt": "^2.17.0",
     "mysql": "^2.15.0",
     "node": "^9.10.1",
     "node-uuid-v4": "^1.0.0",
@@ -35,7 +36,9 @@
   },
   "description": "testing code",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^9.6.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jacobijy/nodejslearning.git"

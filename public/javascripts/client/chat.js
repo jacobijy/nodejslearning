@@ -6,6 +6,7 @@ window.onload = function () {
   // this.postMessage();
   $.getJSON("/json/config.json", data,
     function (data, textStatus, jqXHR) {
+      var client = mqtt.connect();
       var socket = io.connect('http://' + data.config.host + ':' + data.config.port);
       // console.log('socketid:',socket.id);
       console.log(socket);

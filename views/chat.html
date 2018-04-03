@@ -5,19 +5,18 @@
 </script>
 <script>window.userid=JSON.stringify("<%= userid %>")</script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/jquery/jquery-3.3.1.min.js"></script>
 <script src="/javascripts/client/chat.js"></script>
 <script src="/javascripts/client/onclose.js"></script>
 <div id="chatboard"></div>
 <div id="friendslist">
-<table border="0" width="400">
+<table id="friendstable" border="1" width="65">
   <% 
   for (var i=0, len = user_list.length;i<len;i++) { 
   %>
     <% 
     if (user_list[i].userid != userid) { 
     %>
-      <tr><td><button type="button" onclick="getUserid('<%= user_list[i].userid %>')"><%=user_list[i].username%></button></td></tr>
+      <tr><td><button type="button" class="friendsbutton" onclick="getUserid('<%= user_list[i].userid %>')"><%=user_list[i].username%></button></td></tr>
     <% } %>
   <% } %>
 </table>
