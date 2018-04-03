@@ -6,15 +6,20 @@ window.onload = function () {
   // this.postMessage();
   $.getJSON("/json/config.json", data,
     function (data, textStatus, jqXHR) {
-      var client = mqtt.connect();
-      var socket = io.connect('http://' + data.config.host + ':' + data.config.port);
-      // console.log('socketid:',socket.id);
+      var socket = mqtt.connect('mqtt://'+data.config.host+':3010');
+      socket.subscribe("mqtt/demo")
       console.log(socket);
+      // var socket = io.connect('ws://'+data.config.host+':'+data.config.port);
       var messages = [];
       var field = document.getElementById("field");
       var sendButton = document.getElementById("send");
       var chatboard = document.getElementById("chatboard");
-      //   var name = this.document.getElementById('name');
+
+      socket.on('connect', function() {  
+        console.log('connected.....');  
+        socket.subscribe('#');  
+        socket.publish('app2dev/', 'Hello mqtt');  
+      });  
 
       socket.on('message', function (data) {
         if (data.message) {
