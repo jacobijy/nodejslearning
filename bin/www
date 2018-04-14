@@ -13,7 +13,7 @@ var config = require('../config');
 var encrypt = require('../models/encrypt');
 
 var MqttServer = new mosca.Server({
-  port: 3010
+  port: 3010,
 });
 
 MqttServer.on('clientConnected', function (client) {//监听连接
@@ -24,7 +24,7 @@ MqttServer.on('clientConnected', function (client) {//监听连接
 **/
 MqttServer.on('published', function (packet, client) {//当客户端有连接发布主题消息
   var topic = packet.topic;
-  console.log(packet);
+  console.log('published',packet);
   switch (topic) {
     case 'test':
       console.log('message-publish', packet.payload.toString());
@@ -62,7 +62,10 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 //scoket connection
-var io = require('socket.io').listen(server.listen(config.port, config.host))
+var io = require('socket.io').listen(server , {
+  transports: ['polling', 'websocket']
+})
+var scoketio = require('socket.io');
 io.sockets.on('connection', function (socket) {
   console.log('User connected');
   socket.on('send', function (data) {

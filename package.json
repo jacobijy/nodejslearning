@@ -34,7 +34,8 @@
     "require": "^2.4.20",
     "serve-favicon": "~2.4.5",
     "socket.io": "^2.1.0",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "ws": "^5.1.1"
   },
   "description": "testing code",
   "main": "app.js",

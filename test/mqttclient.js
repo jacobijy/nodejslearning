@@ -1,6 +1,8 @@
 var mqtt = require('mqtt');
+var config = require('../config');
 
-var client = mqtt.connect('mqtt://192.168.137.19:3010');
+var client = mqtt.connect('mqtt://'+config.host+':3010');
+console.log(client);
 
 client.on('connect', function () {
   console.log('connected.....');
